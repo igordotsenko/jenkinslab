@@ -10,12 +10,19 @@ pipeline {
         stage('test_expression') {
             when {
                 expression {
-                    return true
+                    return my_func(false, false)
                 }
             }
-        }
-        steps {
-            sh 'echo expression worked'
+            steps {
+                sh 'echo expression worked'
+            }
         }
     }
+}
+
+def my_func(condition1, condition2) {
+    println "conditions:"
+    println condition1
+    println condition2
+    return condition1 || condition2
 }
