@@ -4,7 +4,18 @@ pipeline {
         stage('build') {
             steps {
                 sh 'mvn --version'
+                sh 'echo hello'
             }
+        }
+        stage('test_expression') {
+            when {
+                expression {
+                    return true
+                }
+            }
+        }
+        steps {
+            sh 'echo expression worked'
         }
     }
 }
